@@ -1,0 +1,18 @@
+default:
+    - "dev"
+dev:
+    - "build"
+    - "concurrent:dev_watchers"
+build:    
+    - "clean:tmp"
+    - "copy:build"
+    - "metadata"
+    - "less:dev"
+    - "requirejs:dev"
+buildrelease:        
+    - "clean:tmp"
+    - "copy:build"
+    - "metadata"
+    - "less:release"
+    - "requirejs:release"
+    - "uglify"

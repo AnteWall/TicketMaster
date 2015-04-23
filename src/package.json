@@ -1,0 +1,16 @@
+{
+  "main": "index.html",
+  "name": "node-webkit",
+  "window": {
+    "title": "node-webkit demo",
+		"frame": true,
+		"resizable": true,
+		"toolbar": true,
+		"show": true,
+		"position": "center",
+		"width": 960,
+		"height": 540,
+		"min_width": 960,
+		"min_height": 540
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Ticket Master</title>
+<link rel="stylesheet" href="styles/app.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+<link rel='stylesheet' href='vendor/typicons/src/font/typicons.min.css' />
+<script src="vendor/requirejs/require.js" data-main="app/main.js"></script>
+
+</head>
+<body ng-app="ticketApp">
+
+<div class="top-bar">
+<div id="logo">
+	<h1>Ticket Master {{ 1 + 2}}</h1>
+</div>
+<div class="middle">
+</div>
+<div class="system-btns">
+	<span class="typcn typcn-minus"></span>
+	<span class="typcn typcn-arrow-minimise"></span>
+	<span class="typcn typcn-delete"></span>
+</div>
+</div>
+<div class="left">
+	<div class="settings">
+		<label for="id">Event id</label>
+		<input name="id" type="text" placeholder="2546198171663840938401215" />
+		<label for="request_loop">Repeat every seconds:</label>
+		<input name="request_loop" value="10" type="number" placeholder="2546198171663840938401215" />
+		<button class="btn">Start</button>
+	</div>
+</div>
+<div class="right">
+<p>text here</p>
+</div>
+</body>
+</html>

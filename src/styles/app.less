@@ -1,0 +1,45 @@
+@main-color : #f63000;
+@main-darker: #9a1f01;
+@offset-text: #F7f7f7;
+@color-background    : lighten( #000,  99% );
+@color-border : lighten( #000, 80% );
+
+@import 'topbar';
+@import 'settings';
+
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+body{
+	height:100%;
+	width:100%;
+	font-family: 'Roboto', sans-serif;
+	background: @color-background;
+}
+
+.left{
+	padding:10px;
+	float:left;
+	width:250px;
+	height:100%;
+}
+.left input{
+	padding:5px;
+	border:1px solid @color-border;
+	display:block;
+}
+.right{
+	padding:10px;
+	float:left;
+}
+.btn{
+	padding:10px;
+	background: @main-color;
+	color: @offset-text;
+	margin: 10px 0;
+	cursor:pointer;
+	font-weight:300;
+	text-transform:uppercase;
+}

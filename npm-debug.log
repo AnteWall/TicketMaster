@@ -1,0 +1,89 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.34
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn package.json Ticket-Master@0.0.1 No description
+6 warn package.json Ticket-Master@0.0.1 No README data
+7 verbose readDependencies using package.json deps
+8 verbose install where, deps [ 'F:\\Projects\\ticket',
+8 verbose install   [ 'grunt',
+8 verbose install     'grunt-concurrent',
+8 verbose install     'grunt-contrib-clean',
+8 verbose install     'grunt-contrib-compress',
+8 verbose install     'grunt-contrib-connect',
+8 verbose install     'grunt-contrib-copy',
+8 verbose install     'grunt-contrib-jshint',
+8 verbose install     'grunt-contrib-less',
+8 verbose install     'grunt-contrib-qunit',
+8 verbose install     'grunt-contrib-requirejs',
+8 verbose install     'grunt-contrib-uglify',
+8 verbose install     'grunt-contrib-watch',
+8 verbose install     'grunt-node-webkit-builder',
+8 verbose install     'grunt-shell',
+8 verbose install     'grunt-template',
+8 verbose install     'load-grunt-config' ] ]
+9 info preinstall Ticket-Master@0.0.1
+10 verbose readDependencies using package.json deps
+11 verbose already installed skipping grunt@0.4.5 F:\Projects\ticket
+12 verbose already installed skipping grunt-concurrent@1.0.0 F:\Projects\ticket
+13 verbose already installed skipping grunt-contrib-clean@0.6.0 F:\Projects\ticket
+14 verbose already installed skipping grunt-contrib-compress@0.13.0 F:\Projects\ticket
+15 verbose already installed skipping grunt-contrib-connect@0.9.0 F:\Projects\ticket
+16 verbose already installed skipping grunt-contrib-copy@0.8.0 F:\Projects\ticket
+17 verbose already installed skipping grunt-contrib-jshint@0.11.0 F:\Projects\ticket
+18 verbose already installed skipping grunt-contrib-less@1.0.0 F:\Projects\ticket
+19 verbose already installed skipping grunt-contrib-qunit@0.5.2 F:\Projects\ticket
+20 verbose already installed skipping grunt-contrib-requirejs@0.4.4 F:\Projects\ticket
+21 verbose already installed skipping grunt-contrib-uglify@0.8.0 F:\Projects\ticket
+22 verbose already installed skipping grunt-contrib-watch@0.6.1 F:\Projects\ticket
+23 verbose already installed skipping grunt-node-webkit-builder@1.0.2 F:\Projects\ticket
+24 verbose already installed skipping grunt-shell@1.1.2 F:\Projects\ticket
+25 verbose already installed skipping grunt-template@0.2.3 F:\Projects\ticket
+26 verbose already installed skipping load-grunt-config@0.16.0 F:\Projects\ticket
+27 silly resolved []
+28 info build F:\Projects\ticket
+29 verbose linkStuff [ false, false, false, 'F:\\Projects' ]
+30 info linkStuff Ticket-Master@0.0.1
+31 verbose linkBins Ticket-Master@0.0.1
+32 verbose linkMans Ticket-Master@0.0.1
+33 verbose rebuildBundles Ticket-Master@0.0.1
+34 verbose rebuildBundles [ 'grunt',
+34 verbose rebuildBundles   'grunt-concurrent',
+34 verbose rebuildBundles   'grunt-contrib-clean',
+34 verbose rebuildBundles   'grunt-contrib-compress',
+34 verbose rebuildBundles   'grunt-contrib-connect',
+34 verbose rebuildBundles   'grunt-contrib-copy',
+34 verbose rebuildBundles   'grunt-contrib-jshint',
+34 verbose rebuildBundles   'grunt-contrib-less',
+34 verbose rebuildBundles   'grunt-contrib-qunit',
+34 verbose rebuildBundles   'grunt-contrib-requirejs',
+34 verbose rebuildBundles   'grunt-contrib-uglify',
+34 verbose rebuildBundles   'grunt-contrib-watch',
+34 verbose rebuildBundles   'grunt-node-webkit-builder',
+34 verbose rebuildBundles   'grunt-shell',
+34 verbose rebuildBundles   'grunt-template',
+34 verbose rebuildBundles   'load-grunt-config' ]
+35 info install Ticket-Master@0.0.1
+36 info postinstall Ticket-Master@0.0.1
+37 verbose unsafe-perm in lifecycle true
+38 info Ticket-Master@0.0.1 Failed to exec postinstall script
+39 error Ticket-Master@0.0.1 postinstall: `bower --config.interactive=false install`
+39 error Exit status 1
+40 error Failed at the Ticket-Master@0.0.1 postinstall script.
+40 error This is most likely a problem with the Ticket-Master package,
+40 error not with npm itself.
+40 error Tell the author that this fails on your system:
+40 error     bower --config.interactive=false install
+40 error You can get their info via:
+40 error     npm owner ls Ticket-Master
+40 error There is likely additional logging output above.
+41 error System Windows_NT 6.1.7601
+42 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+43 error cwd F:\Projects\ticket
+44 error node -v v0.10.34
+45 error npm -v 1.4.28
+46 error code ELIFECYCLE
+47 verbose exit [ 1, true ]

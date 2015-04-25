@@ -1,0 +1,54 @@
+ul.messages{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+ul.messages li{
+	color: @main-dark;
+	background-color: @lightest;
+}
+ul.messages li.ng-enter {
+    -webkit-transition: 1s;
+    transition: 1s;
+    opacity: 0;
+}
+ul.messages li.ng-enter-active {
+    opacity: 1;
+}
+ul.messages li p.title{
+	font-weight:300;
+	color: @main-color;
+	background-color: @main-middle;
+	float:left;
+	margin-left:20px;
+	line-height:35px;
+}
+
+ul.messages li p.name{
+	font-weight: bold;
+	background-color: @main-light;
+	padding:10px;
+	text-align:center;
+}
+ul.messages li p.message{
+	margin:5px 0;
+	font-weight:300;
+	padding:20px;
+}
+ul.messages li .info{
+	background-color: @main-middle;
+	height:35px;
+	border-bottom: 1px solid @main-color;
+}
+ul.messages li .info .btn{
+	padding: 5px 10px;
+	float:right;
+	margin: 5px 10px 0 0;
+}
+ul.messages li p.phone{
+	float:right;
+	font-weight:500;
+	color : @text-dark;
+	margin-right:20px;
+	line-height:35px;
+}

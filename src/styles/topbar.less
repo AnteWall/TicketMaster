@@ -3,20 +3,24 @@
 	text-align:center;
 	padding:10px;
 	height:50px;
+	background-color:@main-darker;
 }
 .top-bar #logo{
 	color: @main-color;
 	text-transform: uppercase;
 	float:left;
+	margin:7px 0 0 0;
 }
 .top-bar .system-btns{
 	float:right;
 	color: @main-color;
 	font-size:16pt;	
 	margin-right:20px;
+	-webkit-app-region: no-drag;
+
 }
 .top-bar .typcn:hover{
-	color:@main-darker;
+	color:@main-hover;
 	cursor:pointer;
 }
 
@@ -24,6 +28,10 @@
 	display:inline-block;
 	margin:auto;
 	width:200px;
+}
+.top-bar .middle p{
+	line-height:50px;
+	float:left;
 }
 .top-bar .middle .btn{
 	width:100%;

@@ -9,31 +9,64 @@
 <script src="vendor/requirejs/require.js" data-main="app/main.js"></script>
 
 </head>
-<body ng-app="ticketApp">
+<body>
 
-<div class="top-bar">
-<div id="logo">
-	<h1>Ticket Master {{ 1 + 2}}</h1>
-</div>
-<div class="middle">
-</div>
-<div class="system-btns">
-	<span class="typcn typcn-minus"></span>
-	<span class="typcn typcn-arrow-minimise"></span>
-	<span class="typcn typcn-delete"></span>
-</div>
-</div>
-<div class="left">
-	<div class="settings">
-		<label for="id">Event id</label>
-		<input name="id" type="text" placeholder="2546198171663840938401215" />
-		<label for="request_loop">Repeat every seconds:</label>
-		<input name="request_loop" value="10" type="number" placeholder="2546198171663840938401215" />
-		<button class="btn">Start</button>
+<div style="-webkit-app-region: drag" class="top-bar" ng-controller="TopCtrl">
+	<div id="logo">
+		<h1>Ticket Master</h1>
+	</div>
+	<div ng-show="$root.searching" class="middle">
+		<div class="spinner">
+		  <div class="rect1"></div>
+		  <div class="rect2"></div>
+		  <div class="rect3"></div>
+		  <div class="rect4"></div>
+		  <div class="rect5"></div>
+		</div>
+		<p>Searching...</p>
+	</div>
+	<div class="system-btns">
+		<span ng-click="minimise()" class="typcn typcn-minus"></span>
+		<span ng-click="expand()" class="typcn typcn-arrow-minimise"></span>
+		<span ng-click="exit()" class="typcn typcn-delete"></span>
 	</div>
 </div>
-<div class="right">
-<p>text here</p>
+<div class="left">
+	<div ng-controller="SettingsCtrl" class="settings">
+		<label for="id">FB Api Key</label>
+		<input name="id" ng-model="settings.api_key" type="text" placeholder="asdasdasd4sd5as18d41as65d1as8asd" />
+		<label for="id">FB Event id</label>
+		<input name="id" ng-model="settings.event" type="text" placeholder="2546198171663840938401215" />
+		<label for="request_loop">Repeat every seconds:</label>
+		<input name="request_loop" ng-model="settings.loop" value="10" type="number" placeholder="20" />
+		<button ng-click="startRequests()" class="btn">Start</button>
+		<button ng-click="endRequests()" class="btn">Stop</button>
+
+	</div>
+</div>
+<div class="right" ng-controller="MessageCtrl">
+	<h2>Messages - {{ getEventName() }}</h2>
+	<ul class="messages">	
+    <li ng-animate="'animate'" ng-repeat="message in messages | orderBy: 'created_time' : 'asc'">
+		<p class="name">{{message.from.name}}</p>
+		<p class="message"> {{message.message}} </p>
+		<img ng-src="{{message.picture}}" />
+		<div class="info">
+			<p class="title">FB Direct Link</p>
+			<button  class="btn" ng-click="openLink(message)">Open Link</button>
+			<div class="clearfix"></div>
+		</div>
+		<div class="info">
+			<p class="title">Phonenumber</p>
+			<p class="phone">{{ getPhone(message) }}</p>
+			<div class="clearfix"></div>
+		</div>
+	</li>
+	<li ng-show="messages.length === 0 && root.searching === true" ng-animate="'animate'">
+		<p class="name">No tickets avaliable</p>
+		<p class="message"> We can't find anyone selling tickets right now, you will be alterted when it happens.</p>
+	</li>
+	</ul>
 </div>
 </body>
 </html>

@@ -21,6 +21,5 @@ if ( DEBUG ) {
 
 define(function( require ) {
   require( [ "config" ], function() {
-    require(['app']);    
   });
 });

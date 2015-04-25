@@ -9,9 +9,8 @@ requirejs.config({
 
 	"map": {
 		"*": {
-			"nwGui"     : "nwjs/nwGui",
-			"nwWindow"  : "nwjs/nwWindow",
-			"nwScreen"  : "nwjs/nwScreen"
+			"nwGui"     : "../nwjs/nwGui",
+			"nwWindow"  : "../nwjs/nwWindow",
 		}
 	},	
 	"paths": {
@@ -19,17 +18,20 @@ requirejs.config({
 		"text": "../vendor/requirejs-text/text",
 
 		// Vendor
-		"angularjs"     : "../vendor/angular/angular",		
-		"moment"        : "../vendor/momentjs/moment",
+		"angular"     	    : "../vendor/angular/angular",	
+        'angularAMD'        : "../vendor/angularAMD/angularAMD.min",
+        'angular-animate'   : "../vendor/angular-animate/angular-animate.min",
+        'angular-audio'     : "../vendor/angular-audio/app/angular.audio",
+
+		"moment"        	: "../vendor/momentjs/moment",
 
 		// Application paths
 		"root"        : "..",
-		"templates"   : "../templates"
+		"templates"   : "../templates",
+
 	},
-	"shim": {
-		"app": [ "angularjs"],
-		"angular": {
-			exports: ['angularjs'],
-		}
-	}
+    shim: { 'angularAMD': ['angular','angular-animate','angular-audio','moment'] },
+    deps: ['app']
+
+	
 });

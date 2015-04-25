@@ -1,11 +1,24 @@
-@main-color : #f63000;
-@main-darker: #9a1f01;
-@offset-text: #F7f7f7;
-@color-background    : lighten( #000,  99% );
-@color-border : lighten( #000, 80% );
+@main-color : #e53d09;
+@main-hover : #c73609;
+@main-darker: #1a1a1a;
+@main-dark  : #333333;
+@main-light : #eeeeee;
+@main-middle: #aaaaaa;
+@offset-text: #000000;
+@lightest 	: #FFFFFF;
+
+@text       : #fff;
+@offset-text: #f0f0f0;
+@text-dark  : #1a1a1a;
+
+@color-background : @main-dark;
+@color-border     : lighten( #000, 80% );
 
 @import 'topbar';
 @import 'settings';
+@import 'messages';
+@import 'spinner';
+
 
 *{
 	padding: 0;
@@ -17,13 +30,22 @@ body{
 	width:100%;
 	font-family: 'Roboto', sans-serif;
 	background: @color-background;
+	color:@text;
+	overflow-x: hidden;
 }
-
+.clearfix{
+	clear:both;
+}
 .left{
+	background: @main-dark;
 	padding:10px;
 	float:left;
-	width:250px;
+	width:220px;
 	height:100%;
+}
+.left label{
+	color: @offset-text;
+	font-weight:500;
 }
 .left input{
 	padding:5px;
@@ -31,15 +53,23 @@ body{
 	display:block;
 }
 .right{
+	width:auto;
+	margin-left:240px;
+}
+.right h2{
+	background-color: @main-color;
 	padding:10px;
-	float:left;
+	text-align:center;
+	margin:0;
 }
 .btn{
-	padding:10px;
+	-webkit-app-region: no-drag;
+	padding:10px 25px;
 	background: @main-color;
 	color: @offset-text;
 	margin: 10px 0;
 	cursor:pointer;
-	font-weight:300;
+	font-weight:500;
 	text-transform:uppercase;
+	border-radius:5px;
 }

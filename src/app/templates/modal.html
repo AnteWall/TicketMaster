@@ -1,0 +1,21 @@
+ <div class="modal-header">
+            <h3 class="modal-title">Facebook Access Token</h3>
+        </div>
+        <div class="modal-body">
+            <p>To get a facebook access token you need to register as a Facebook Developer 
+            <a ng-click="openLink('https://developers.facebook.com/')">here</a>.<br>
+            <br>
+            After that you can go to <a ng-click="openLink('https://developers.facebook.com/tools/explorer/')">this</a> page and request a access token by cliking "Get Token" and then "Get Access Token".Make sure "user_events" is filled and click "Get Access Token" button and then copy the access token inte to application. 
+
+            Note that the token often expire after a few hours and you need to request a new one.
+            </p>
+
+            <h4>Longer Access token</h4>
+            <p>
+                If you create an app on Facebook developer and use that to create an access token you can make the token last up to 3 months, however make sure to click "user_events" when it ask for permissions.
+            </p>
+
+        </div>
+        <div class="modal-footer">
+        </div>
+</div>

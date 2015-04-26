@@ -1,7 +1,7 @@
 {
   "main": "index.html",
   "name": "Ticket-Master",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "window": {
     "title": "node-webkit demo",
 		"frame": false,

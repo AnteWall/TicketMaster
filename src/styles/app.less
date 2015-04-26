@@ -1,3 +1,6 @@
+// Include prebuilt bootstrap (css)
+@import (inline) "../vendor/bootstrap/dist/css/bootstrap.min.css";
+@import "../vendor/bootstrap/less/variables";
 @main-color : #e53d09;
 @main-hover : #c73609;
 @main-darker: #1a1a1a;
@@ -14,6 +17,8 @@
 @color-background : @main-dark;
 @color-border     : lighten( #000, 80% );
 
+
+@import 'modal';
 @import 'topbar';
 @import 'settings';
 @import 'messages';
@@ -48,6 +53,7 @@ body{
 	font-weight:500;
 }
 .left input{
+	color: @text-dark;
 	padding:5px;
 	border:1px solid @color-border;
 	display:block;
@@ -72,4 +78,7 @@ body{
 	font-weight:500;
 	text-transform:uppercase;
 	border-radius:5px;
+}
+.typcn:hover{
+	cursor:pointer;
 }

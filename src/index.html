@@ -33,9 +33,10 @@
 </div>
 <div class="left">
 	<div ng-controller="SettingsCtrl" class="settings">
-		<label for="id">FB Api Key</label>
+		<label for="id">FB Api Key 	<span ng-click="openKeyInfo(200)" class="typcn typcn-info-large"></span>
+</label>
 		<input name="id" ng-model="settings.api_key" type="text" placeholder="asdasdasd4sd5as18d41as65d1as8asd" />
-		<label for="id">FB Event id</label>
+		<label for="id">FB Event id <span ng-click="openEventInfo(200)" class="typcn typcn-info-large"></span></label>
 		<input name="id" ng-model="settings.event" type="text" placeholder="2546198171663840938401215" />
 		<label for="request_loop">Repeat every seconds:</label>
 		<input name="request_loop" ng-model="settings.loop" value="10" type="number" placeholder="20" />
@@ -48,18 +49,15 @@
 	<h2>Messages - {{ getEventName() }}</h2>
 	<ul class="messages">	
     <li ng-animate="'animate'" ng-repeat="message in messages | orderBy: 'created_time' : 'asc'">
-		<p class="name">{{message.from.name}}</p>
+		<p class="name">{{message.from.name}} - {{fromNow(message)}}</p>
 		<p class="message"> {{message.message}} </p>
 		<img ng-src="{{message.picture}}" />
 		<div class="info">
 			<p class="title">FB Direct Link</p>
 			<button  class="btn" ng-click="openLink(message)">Open Link</button>
-			<div class="clearfix"></div>
 		</div>
 		<div class="info">
-			<p class="title">Phonenumber</p>
 			<p class="phone">{{ getPhone(message) }}</p>
-			<div class="clearfix"></div>
 		</div>
 	</li>
 	<li ng-show="messages.length === 0 && root.searching === true" ng-animate="'animate'">

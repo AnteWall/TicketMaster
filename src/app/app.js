@@ -1,8 +1,8 @@
-define(['angularAMD','../nwjs/nwWindow'], function (angularAMD,nwWindow) {
+define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow,moment) {
 
 	var gui = require('nw.gui');
 
-    var app = angular.module("ticketApp", ['ngAnimate','ngAudio']);
+    var app = angular.module("ticketApp", ['ngAnimate','ngAudio','ui.bootstrap']);
     app.controller('TopCtrl',['$scope',function($scope){
     	$scope.maximize = false;
     	$scope.exit = function(){
@@ -32,7 +32,6 @@ define(['angularAMD','../nwjs/nwWindow'], function (angularAMD,nwWindow) {
     		angular.forEach(data.data,function(obj){
     			if(obj.message != undefined){
 	    			if(triggers(obj.message) && !alreadyExists(obj)){
-	    				console.log("adding", obj);	    				
 	    				$scope.messages.push(obj);                        
                         $scope.sound.play();
 	    			}
@@ -41,6 +40,10 @@ define(['angularAMD','../nwjs/nwWindow'], function (angularAMD,nwWindow) {
     		//$scope.$apply();
 
     	});
+
+        $scope.fromNow = function(message){
+            return moment(message.created_time).fromNow();
+        }
 
     	$scope.openLink = function(message){
     		gui.Shell.openExternal(message.actions[0].link)
@@ -84,11 +87,11 @@ define(['angularAMD','../nwjs/nwWindow'], function (angularAMD,nwWindow) {
     	}
     }]);
 
-    app.controller('SettingsCtrl',['$rootScope','$scope','$interval','$http', 
-    	function($rootScope,$scope,$interval,$http){
+    app.controller('SettingsCtrl',['$rootScope','$scope','$interval','$http','$modal', 
+    	function($rootScope,$scope,$interval,$http,$modal){
     	$scope.settings = {};
-    	$scope.settings.api_key = "CAACEdEose0cBAGNMTzWtR5w4Rtma2xVIXZCuYZCTOIMrzWEKN6xZBQDMlv3IPUX6I54r1vpvRdHZA9JHeCrxZC46gjHkdZAIIiu68ZCvMIJPvGoflfyVJtQmcZA42RPY13ZBcMNe9eXQ3XfNpWOrzn5yFZAK9uJ2tMxAZAC2LiQMatoDRn22sDEZC5iGGyhqUN3SZBUUFlDQNEt9dgnIGYnt4A4oN";
-    	$scope.settings.event = "1584013525204819";
+    	/*$scope.settings.api_key = "CAACEdEose0cBAEn0ZC65ofeGGiigmEBO9mikVbCwxSGAE9Q3LnH1qj2oVcNakbjfPrq14ydhQiZAUb66XqWGDp5ihiYg5d8eGRsae7jiC5wzsH65KK0nhqUsgQ4CTLkQIZBwJJsG0kUZAsXWrmJ2qArtZBuYEQOqfygBAhmU7ylefQRsZB1JK54Kjsuu9ZBVIGofmH3ShmZAF2eDVBbgvHp7";
+    	$scope.settings.event = "1584013525204819";*/
 	    $scope.settings.loop = 10;
 	    $scope.interval;
     	$scope.startRequests = function(){    	 	
@@ -107,6 +110,23 @@ define(['angularAMD','../nwjs/nwWindow'], function (angularAMD,nwWindow) {
     	 	
     	}
 
+        $scope.openKeyInfo = function (size) {
+           var modalInstance = $modal.open({
+                templateUrl: 'app/templates/modal.html',
+                controller: 'FbTokenCtrl',
+                size: size,
+            });
+        };
+
+        $scope.openEventInfo = function (size) {
+           var modalInstance = $modal.open({
+                templateUrl: 'app/templates/fbeventid.html',
+                controller: 'FbTokenCtrl',
+                size: size,
+            });
+        };
+
+
     	function sendRequest () {
             var defUrl = "https:/graph.facebook.com/v2.3"
             var access_token = '?access_token=' + $scope.settings.api_key;
@@ -121,6 +141,14 @@ define(['angularAMD','../nwjs/nwWindow'], function (angularAMD,nwWindow) {
             })
 
     	}
+    }]);
+
+    app.controller('FbTokenCtrl',['$scope',function($scope){
+
+        $scope.openLink = function(link){
+            gui.Shell.openExternal(link);
+        }
+
     }]);
 
     return angularAMD.bootstrap(app);

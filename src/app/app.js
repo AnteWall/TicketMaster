@@ -90,12 +90,55 @@ define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow
     app.controller('SettingsCtrl',['$rootScope','$scope','$interval','$http','$modal', 
     	function($rootScope,$scope,$interval,$http,$modal){
     	$scope.settings = {};
+        $scope.user = {}
     	/*$scope.settings.api_key = "CAACEdEose0cBAEn0ZC65ofeGGiigmEBO9mikVbCwxSGAE9Q3LnH1qj2oVcNakbjfPrq14ydhQiZAUb66XqWGDp5ihiYg5d8eGRsae7jiC5wzsH65KK0nhqUsgQ4CTLkQIZBwJJsG0kUZAsXWrmJ2qArtZBuYEQOqfygBAhmU7ylefQRsZB1JK54Kjsuu9ZBVIGofmH3ShmZAF2eDVBbgvHp7";
     	$scope.settings.event = "1584013525204819";*/
 	    $scope.settings.loop = 10;
 	    $scope.interval;
+        var fbURL = 'https://graph.facebook.com/v2.3/';
+        var appid = "710824895663274";
+        var redirect_uri = "https://www.facebook.com/connect/login_success.html";
+        var secret = "55767825ca6ddd8b36ef1b0329211a02";
+        $scope.get_token = function(code){
+            console.log("JEK!");
+            var url = 'https://graph.facebook.com/v2.3/oauth/access_token?client_id='+appid;
+            url += '&redirect_uri='+redirect_uri;
+            url += '&client_secret='+secret;
+            url += '&code='+code;
+            $http.get(url).success(function(res){
+                $scope.settings.api_key = res.access_token;
+                $scope.get_me();
+            }).error(function(err){
+                console.log(err);
+            })
+        }
+
+        $scope.get_me = function(){
+            if($scope.settings.api_key){
+                $http.get(fbURL + 'me/?fields=picture,id,name&access_token='+$scope.settings.api_key).success(function(res){
+                    console.log(res);
+                    $scope.user = res;
+                }).error(function(err){
+                    console.log(err);
+                })
+            }
+        }
+
+        $scope.login = function(){
+            var t_url = 'https://www.facebook.com/dialog/oauth?client_id='+appid+'&redirect_uri='+ redirect_uri;
+            var fb_window = gui.Window.open(t_url);            
+            fb_window.on('loaded',function(){                
+                var login_path = fb_window.window.location;
+                if(getQueryVariable(login_path,'code') != false){
+                    $scope.settings.api_key = getQueryVariable(login_path,'code');
+                    $scope.get_token(getQueryVariable(login_path,'code'));
+                    fb_window.close();
+                }
+            });
+        }
+
     	$scope.startRequests = function(){    	 	
-    		//graph.setAccessToken($scope.settings.api_key);
+    		//graph.setAccessToken($scope.settings.api_key);            
     		$rootScope.searching = true;
     		sendRequest();
     		$scope.interval = $interval(function(){
@@ -126,7 +169,16 @@ define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow
             });
         };
 
-
+        function getQueryVariable(url,variable)
+        {
+               var query = url.search.substring(1);
+               var vars = query.split("&");
+               for (var i=0;i<vars.length;i++) {
+                       var pair = vars[i].split("=");
+                       if(pair[0] == variable){return pair[1];}
+               }
+               return(false);
+        }
     	function sendRequest () {
             var defUrl = "https:/graph.facebook.com/v2.3"
             var access_token = '?access_token=' + $scope.settings.api_key;
@@ -136,6 +188,7 @@ define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow
                 $rootScope.$broadcast('messages',res);     
             })
             .error(function(err){
+                console.log(err);
                 alert("ERROR WITH ACCESS KEY, probably expired...");
                 $scope.endRequests();
             })

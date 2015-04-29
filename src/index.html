@@ -33,16 +33,19 @@
 </div>
 <div class="left">
 	<div ng-controller="SettingsCtrl" class="settings">
-		<label for="id">FB Api Key 	<span ng-click="openKeyInfo(200)" class="typcn typcn-info-large"></span>
-</label>
-		<input name="id" ng-model="settings.api_key" type="text" placeholder="asdasdasd4sd5as18d41as65d1as8asd" />
+		<button ng-hide="user.name" ng-click="login()" class="btn">Login with Facebook</button>
+		<div ng-show="user.name" class="user-info">
+			<img ng-src="{{user.picture.data.url}}">			
+			<p class="name">{{user.name}}</p>
+		</div>
+		<div ng-show="user.name" class="requests">
 		<label for="id">FB Event id <span ng-click="openEventInfo(200)" class="typcn typcn-info-large"></span></label>
 		<input name="id" ng-model="settings.event" type="text" placeholder="2546198171663840938401215" />
 		<label for="request_loop">Repeat every seconds:</label>
 		<input name="request_loop" ng-model="settings.loop" value="10" type="number" placeholder="20" />
 		<button ng-click="startRequests()" class="btn">Start</button>
 		<button ng-click="endRequests()" class="btn">Stop</button>
-
+		</div>
 	</div>
 </div>
 <div class="right" ng-controller="MessageCtrl">

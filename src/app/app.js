@@ -23,11 +23,28 @@ define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow
 		}
 	}]);
 
+	app.controller('EventCtrl',['$scope',function($scope){
+
+		$scope.$on('event_info',function(event,data){
+			$scope.fb_event = data;
+		})
+
+		$scope.coverImage = function(){
+			if($scope.fb_event === undefined) return;
+			if($scope.fb_event.cover){
+				return $scope.fb_event.cover.source;
+			}
+			return 'img/event_default.png';
+		}
+
+	}]);
+
 
 	app.controller('MessageCtrl',['$scope','ngAudio',function($scope,ngAudio){
 		$scope.sound = ngAudio.load("app/alarm.ogg");
 		$scope.triggers = ["säljer", "säljes", "kränga", "kränger", "kvarn"];
 		$scope.messages = [];
+
 		$scope.$on('messages',function(event,data){
 			angular.forEach(data.data,function(obj){
 				if(obj.message != undefined){
@@ -38,6 +55,10 @@ define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow
 				}
 			});
 		});
+
+		$scope.$on('clear_messages',function(event){
+			$scope.messages = [];
+		})
 
 		$scope.fromNow = function(message){
 			return moment(message.created_time).fromNow();
@@ -53,13 +74,12 @@ define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow
 			}
 			return "";
 		}
-		$scope.getPhone = function(message){
-			var re =  new RegExp(/((07|\+46)([0-9][ -]*){7,8}[0-9])/);
-			var match = re.exec(message.message);
-			if(match == null)
-				return "-";
-			else
-				return match[0];
+
+		$scope.ShowNoMessages = function(searching){
+			if($scope.messages.length == 0 && searching){
+				return true;
+			}
+			return false;
 		}
 
 		function alreadyExists(message){
@@ -112,6 +132,13 @@ define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow
 				facebook.me($scope.settings.api_key)
 				.success(function(res){
 					$scope.user = res;
+					facebook.get_user_events($scope.user.id,$scope.settings.api_key)
+					.success(function(res){
+						$scope.user_events = res.data;
+					})
+					.error(function(err){
+						console.log(err);
+					});
 				})
 				.error(function(err){
 					console.log(err);
@@ -133,8 +160,18 @@ define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow
 		}
 
 		$scope.startRequests = function(){
+			$scope.endRequests(); //Call this incase old request are active.
 			$rootScope.searching = true;
 			sendRequest();
+
+			facebook.get_event($scope.settings.event,$scope.settings.api_key)
+			.success(function(res){
+				$rootScope.$broadcast('event_info',res);
+			})
+			.error(function(err){
+				console.log(err);
+			})
+
 			$scope.interval = $interval(function(){
 				sendRequest();
 			},$scope.settings.loop * 1000)
@@ -210,7 +247,11 @@ define(['angularAMD','../nwjs/nwWindow','moment'], function (angularAMD,nwWindow
 		}
 
 		facebook.get_event = function(event,token){
-			return $http.get(fbURL + event + '?access_token=' + token);
+			return $http.get(fbURL + event + '?fields=id,name,cover,description&access_token=' + token);
+		}
+
+		facebook.get_user_events = function(user,token){
+			return $http.get(fbURL + 'me/events?access_token=' + token);
 		}
 
 		return facebook;

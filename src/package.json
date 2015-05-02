@@ -1,12 +1,12 @@
 {
   "main": "index.html",
   "name": "Ticket-Master",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "window": {
     "title": "node-webkit demo",
 		"frame": false,
 		"resizable": true,
-		"toolbar": true,
+		"toolbar": false,
 		"show": true,
 		"position": "center",
 		"width": 960,

@@ -4,7 +4,7 @@ Ticket Master
 
 **A multi platform Ticket tracker for [Facebook.com][Facebook] **
 
-[![Livestreamer Twitch GUI][Preview]][Releases]
+[![Ticket Master][Preview]][Releases]
 
 
 ## Description
@@ -47,7 +47,7 @@ A specials thanks to the following people or projects:
 
 This projects structure is based on Twitch Livestreamer GUI by Sebastian Meyer
 
-  [Preview]: http://i.imgur.com/QpJ6Q9S.png "Preview image"
+  [Preview]: http://i.imgur.com/Z5dUMKQ.png "Preview image"
   [Releases]: https://github.com/AnteWall/TicketMaster/releases "Ticket Master Releases"
   [Issues]: https://github.com/AnteWall/TicketMaster/issues "Ticket Master Issues"
   [Contributing]: https://github.com/AnteWall/TicketMaster/blob/master/CONTRIBUTING.md

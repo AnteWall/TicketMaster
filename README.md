@@ -9,7 +9,7 @@ Ticket Master
 
 ## Description
 
-Ticket Master is a [NW.js (formerly Node-Webkit)][NW.js] application, which means that it is a web application written in JavaScript ([AngularJS][AngularJS]), HTML ([Handlebars][Handlebars]) and CSS ([LessCSS][LessCSS]) and is being run by an [Node.js][Node.js] powered version of [Chromium][Chromium].
+Ticket Master is a [NW.js (formerly Node-Webkit)][NW.js] application, which means that it is a web application written in JavaScript ([AngularJS][AngularJS]), HTML and CSS ([LessCSS][LessCSS]) and is being run by an [Node.js][Node.js] powered version of [Chromium][Chromium].
 
 
 ## When to use

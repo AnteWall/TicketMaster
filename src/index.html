@@ -1,73 +1,78 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf8">
-	<title>Ticket Master</title>
-	<link rel="stylesheet" href="styles/app.css">
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
-	<link rel='stylesheet' href='vendor/typicons/src/font/typicons.min.css' />
-	<script src="vendor/requirejs/require.js" data-main="app/main.js"></script>
-
+    <meta charset="utf8">
+    <title>Ticket Master</title>
+    <link rel="stylesheet" href="styles/app.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='vendor/typicons/src/font/typicons.min.css' />
+    <script src="vendor/requirejs/require.js" data-main="app/main.js"></script>
 </head>
-<body>
 
-	<div style="-webkit-app-region: drag" class="top-bar" ng-controller="TopCtrl">
-		<div id="logo">
-			<h1>Ticket Master</h1>
-		</div>
-		<div ng-show="$root.searching" class="middle">
-			<div class="spinner">
-				<div class="rect1"></div>
-				<div class="rect2"></div>
-				<div class="rect3"></div>
-				<div class="rect4"></div>
-				<div class="rect5"></div>
-			</div>
-			<p>Searching...</p>
-		</div>
-		<div class="system-btns">
-			<span ng-click="minimise()" class="typcn typcn-minus"></span>
-			<span ng-click="expand()" class="typcn typcn-arrow-minimise"></span>
-			<span ng-click="exit()" class="typcn typcn-delete"></span>
-		</div>
-	</div>
-	<div class="left">
-		<div ng-controller="SettingsCtrl" class="settings">
-			<button ng-hide="user.name" ng-click="login()" class="btn">Login with Facebook</button>
-			<div ng-show="user.name" class="user-info">
-				<img ng-src="{{user.picture.data.url}}">
-				<p class="name">{{user.name}}</p>
-			</div>
-			<div ng-show="user.name" class="requests">
-				<label for="id">FB Event id <span ng-click="openEventInfo(200)" tooltip="What is this?" class="typcn typcn-info-large"></span></label>
-				<input name="id" type="text" ng-model="settings.event" typeahead="ev.id as ev.name for ev in user_events | filter:$viewValue | limitTo:8" class="form-control">
-				<label for="request_loop">Repeat every seconds:</label>
-				<input name="request_loop" ng-model="settings.loop" value="10" type="number" placeholder="20" />
-				<button ng-click="startRequests()" class="btn">Start</button>
-				<button ng-click="endRequests()" class="btn">Stop</button>
-			</div>
-		</div>
-	</div>
-	<div class="right" >
-		<div ng-show="fb_event" ng-controller="EventCtrl" class="event">
-			<img ng-src="{{coverImage()}}" />
-			<h3>{{fb_event.name}}</h3>
-			<p>{{fb_event.description}}</p>
-		</div>
-		<ul class="messages" ng-controller="MessageCtrl">
-			<li ng-animate="'animate'" ng-repeat="message in messages | orderBy: 'created_time' : 'asc'">
-				<p class="name">
-					{{message.from.name}} - {{fromNow(message)}}
-					<span ng-click="openLink(message)" tooltip="Open Facebook link" class="typcn typcn-social-facebook-circular"></span>
-				</p>
-				<p class="message"> {{message.message}} </p>
-				<img ng-src="{{message.picture}}" />
-			</li>
-			<li ng-show="ShowNoMessages($root.searching)" ng-animate="'animate'">
-				<p class="name">No tickets avaliable</p>
-				<p class="message"> Can't find anyone selling tickets right now, you will be alerted when it happens.</p>
-			</li>
-		</ul>
-	</div>
+<body>
+    <div style="-webkit-app-region: drag" class="top-bar" ng-controller="TopCtrl">
+        <div id="logo">
+            <h1>Ticket Master</h1>
+        </div>
+        <div ng-show="$root.searching" class="middle">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+            <p>Searching...</p>
+        </div>
+        <div class="system-btns">
+            <span ng-click="minimise()" class="typcn typcn-minus"></span>
+            <span ng-click="expand()" class="typcn typcn-arrow-minimise"></span>
+            <span ng-click="exit()" class="typcn typcn-delete"></span>
+        </div>
+    </div>
+    <div class="left">
+        <div ng-controller="SettingsCtrl" class="settings">
+            <button ng-hide="user.name" ng-click="login()" class="btn">Login with Facebook</button>
+            <div ng-show="user.name" class="user-info">
+                <img ng-src="{{user.picture.data.url}}">
+                <p class="name">{{user.name}}</p>
+            </div>
+            <div ng-show="user.name" class="requests">
+                <label for="id">FB Event id <span ng-click="openEventInfo(200)" tooltip="What is this?" class="typcn typcn-info-large"></span></label>
+                <input name="id" type="text" placeholder="Type event name..." ng-model="settings.event" typeahead="ev.id as ev.name for ev in user_events | filter:$viewValue | limitTo:8" class="form-control">
+                <label for="request_loop">Repeat every seconds:</label>
+                <input name="request_loop" ng-model="settings.loop" value="10" type="number" placeholder="20" />
+                <!--<label for="sms">Skicka SMS till:</label>
+                <input name="sms" ng-model="settings.phone" type="tel" placeholder="XXX-XXXXXXX" />-->
+                <label for="sms">Autokommentera</label>
+                <input name="comment" ng-model="settings.send_comment" type="checkbox" />
+                <button ng-click="startRequests()" class="btn">Start</button>
+                <button ng-click="endRequests()" class="btn">Stop</button>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div ng-show="fb_event" ng-controller="EventCtrl" class="event">
+            <img ng-src="{{coverImage()}}" />
+            <h3>{{fb_event.name}}</h3>
+            <p>{{fb_event.description}}</p>
+        </div>
+        <ul class="messages" ng-controller="MessageCtrl">
+            <li ng-animate="'animate'" ng-repeat="message in messages | orderBy: 'created_time' : 'asc'">
+                <p class="name">
+                    {{message.from.name}} - {{fromNow(message)}}
+                    <span ng-click="openLink(message)" tooltip="Open Facebook link" class="typcn typcn-social-facebook-circular"></span>
+                </p>
+                <p class="message"> {{message.message}} </p>
+                <img ng-src="{{message.picture}}" />
+            </li>
+            <li ng-show="ShowNoMessages($root.searching)" ng-animate="'animate'">
+                <p class="name">No tickets avaliable</p>
+                <p class="message"> Can't find anyone selling tickets right now, you will be alerted when it happens.</p>
+            </li>
+        </ul>
+    </div>
 </body>
+
 </html>

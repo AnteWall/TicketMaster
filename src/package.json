@@ -1,17 +1,17 @@
 {
-  "main": "index.html",
-  "name": "Ticket-Master",
-  "version": "0.2.0",
-  "window": {
-    "title": "node-webkit demo",
-		"frame": false,
-		"resizable": true,
-		"toolbar": false,
-		"show": true,
-		"position": "center",
-		"width": 960,
-		"height": 540,
-		"min_width": 960,
-		"min_height": 540
-  }
+    "main": "index.html",
+    "name": "Ticket-Master",
+    "version": "0.2.0",
+    "window": {
+        "title": "node-webkit demo",
+        "frame": true,
+        "resizable": true,
+        "toolbar": true,
+        "show": true,
+        "position": "center",
+        "width": 960,
+        "height": 540,
+        "min_width": 960,
+        "min_height": 540
+    }
 }

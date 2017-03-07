@@ -1,3 +1,12 @@
-<h1>
-  {{title}}
-</h1>
+<div class="top-bar"></div>
+<md-sidenav-container class="main-container">
+  <md-sidenav #sidenav align="end" mode="side" opened="false" class="sidenav">
+    <settings></settings>
+  </md-sidenav>
+
+  <div class="sidenav-content">
+    <button md-raised-button color="primary" (click)="loginFB()">
+      Logga in med Facebook
+    </button>
+  </div>
+</md-sidenav-container>

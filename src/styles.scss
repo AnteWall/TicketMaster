@@ -1,0 +1,15 @@
+$dark-blue: #182433;
+$side-nav-bg: $dark-blue;
+
+/* You can add global styles to this file, and also import other style files */
+* {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.cdk-focus-trap-content {
+    overflow: visible!important;
+}
+body {
+  background: #F5F6F8;
+}

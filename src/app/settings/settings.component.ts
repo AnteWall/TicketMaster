@@ -8,11 +8,11 @@ import { LoginService } from './../services';
 })
 export class SettingsComponent implements OnInit {
   private profile: Object;
+  private autoComment: boolean = false;
 
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
     this.loginService.profile.subscribe((profile) => this.profile = profile);
   }
-
 }

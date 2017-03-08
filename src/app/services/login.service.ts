@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { FacebookApiService } from './facebook-api.service';
+import { Profile } from './../models';
 
 var oauth = require('oauth-electron-facebook').oauth;
 var facebook = require('oauth-electron-facebook').facebook;
@@ -15,11 +16,13 @@ const FB_LOGIN_URL = `https://www.facebook.com/v2.8/dialog/oauth?client_id=${FB_
 
 @Injectable()
 export class LoginService {
-  private _profile: BehaviorSubject<Object> = new BehaviorSubject<Object>(null);
-  public profile: Observable<Object> = this._profile.asObservable();
+  private _profile: BehaviorSubject<Profile> = new BehaviorSubject<Profile>(null);
+  public profile: Observable<Profile> = this._profile.asObservable();
 
   constructor(private fbApi: FacebookApiService) {
-
+    this.profile.subscribe((profile) => {
+      console.log(profile);
+    });
   }
 
   loginFacebook(): Promise<any> {
@@ -36,9 +39,17 @@ export class LoginService {
     });
   }
 
-  getProfile() {
+  private getUserEvents(userData) {
+    return this.fbApi.get(`/${userData.id}/events`).subscribe((events: any) => {
+      this._profile.next(Object.assign({}, userData, { events: events.json().data }))
+    });
+  }
+
+  private getProfile() {
     this.fbApi.get('/me', ['id', 'name', 'picture']).subscribe(
-      (response) => this._profile.next(response.json()),
+      (response) => {
+        this.getUserEvents(response.json())
+      },
       (err) => console.error(err)
     );
   }

@@ -1,12 +1,23 @@
 .profile-img {
-  margin: -25px auto 0;
-  width: 50px;
-  border-radius: 50%;
-  color: white;
-  display: block;
+    margin: -40px auto 20px;
+    width: 80px;
+    border-radius: 50%;
+    color: white;
+    display: block;
 }
 
 :host {
-  padding: 0 20px;
-  display: block;
+    padding: 0 20px;
+    display: block;
+    color: #667C91;
 }
+
+.mat-slider-horizontal {
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+

@@ -1,7 +1,7 @@
 @import './../variables';
 .main-container {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 60px);
     overflow: visible;
 }
 
@@ -14,6 +14,7 @@
 
 .sidenav {
     background: $side-nav-bg;
+    min-width: 200px;
 }
 
 .top-bar {

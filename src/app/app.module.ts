@@ -8,11 +8,13 @@ import { MaterialModule } from '@angular/material';
 import { SettingsComponent } from './settings/settings.component';
 
 import 'hammerjs';
+import { TopbarComponent } from './topbar/topbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SettingsComponent
+    SettingsComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,

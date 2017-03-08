@@ -8,14 +8,14 @@
 .sidenav-content {
     padding: 20px;
     display: flex;
-    height: 100%;
+    height: calc(100% - 50px);
     align-items: baseline;
     justify-content: center;
 }
 
 .sidenav {
     background: $side-nav-bg;
-    min-width: 200px;
+    width: 300px;
 }
 
 .message-box {

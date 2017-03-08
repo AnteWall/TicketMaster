@@ -4,8 +4,8 @@
   </md-input-container>
 
   <md-autocomplete #auto="mdAutocomplete">
-    <md-option *ngFor="let state of filteredStates | async" [value]="state">
-      {{ state }}
+    <md-option *ngFor="let event of filteredEvents | async" [value]="event.name">
+      {{ event.name }}
     </md-option>
   </md-autocomplete>
 </div>

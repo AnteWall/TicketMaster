@@ -1,11 +1,14 @@
 <div class="top-bar">
-  <md-input-container *ngIf="loggedIn" class="auto-complete">
-    <input mdInput placeholder="Event" [mdAutocomplete]="auto" [formControl]="eventCtrl">
-  </md-input-container>
+  <span *ngIf="loggedIn">
+    <md-input-container class="auto-complete">
+      <input mdInput placeholder="Event" [mdAutocomplete]="auto" [formControl]="eventCtrl">
+    </md-input-container>
 
-  <md-autocomplete #auto="mdAutocomplete">
-    <md-option *ngFor="let event of filteredEvents | async" [value]="event.name">
-      {{ event.name }}
-    </md-option>
-  </md-autocomplete>
+    <md-autocomplete #auto="mdAutocomplete">
+      <md-option *ngFor="let event of filteredEvents | async" [value]="event.name">
+        {{ event.name }}
+      </md-option>
+    </md-autocomplete>
+    <button md-raised-button color="primary">Starta</button>
+  </span>
 </div>

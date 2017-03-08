@@ -27,7 +27,7 @@ export class LoginService {
 
   loginFacebook(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      let fbWindow = new BrowserWindow({ width: 450, height: 300, modal: true, show: false, 'node-integration': false });
+      let fbWindow = new BrowserWindow({ width: 450, height: 300, modal: true, show: false, 'node-integration': true });
       var info = new facebook(FB_APP_ID, FB_APP_SECRET, 'user_events', {});
       var auth = new oauth();
       auth.login(info, fbWindow).then((response) => {

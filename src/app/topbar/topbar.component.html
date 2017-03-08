@@ -1,5 +1,5 @@
 <div class="top-bar">
-  <md-input-container>
+  <md-input-container *ngIf="loggedIn" class="auto-complete">
     <input mdInput placeholder="Event" [mdAutocomplete]="auto" [formControl]="eventCtrl">
   </md-input-container>
 

@@ -19,6 +19,9 @@ export class LoginService {
   private _profile: BehaviorSubject<Profile> = new BehaviorSubject<Profile>(null);
   public profile: Observable<Profile> = this._profile.asObservable();
 
+  private _loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public loggedIn: Observable<boolean> = this._loggedIn.asObservable();
+
   constructor(private fbApi: FacebookApiService) {
     this.profile.subscribe((profile) => {
       console.log(profile);
@@ -41,14 +44,15 @@ export class LoginService {
 
   private getUserEvents(userData) {
     return this.fbApi.get(`/${userData.id}/events`).subscribe((events: any) => {
-      this._profile.next(Object.assign({}, userData, { events: events.json().data }))
+      this._profile.next(Object.assign({}, userData, { events: events.json().data }));
+      this._loggedIn.next(true);
     });
   }
 
   private getProfile() {
     this.fbApi.get('/me', ['id', 'name', 'picture']).subscribe(
       (response) => {
-        this.getUserEvents(response.json())
+        this.getUserEvents(response.json());
       },
       (err) => console.error(err)
     );

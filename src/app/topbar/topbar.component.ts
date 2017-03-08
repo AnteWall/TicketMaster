@@ -10,6 +10,7 @@ import { LoginService } from './../services';
 export class TopbarComponent {
   private eventCtrl: FormControl;
   private events: Array<any>;
+  private loggedIn: boolean = false;
   filteredEvents: any;
 
   constructor(private loginService: LoginService) {
@@ -22,6 +23,8 @@ export class TopbarComponent {
         this.events = profile.events;
       }
     });
+
+    this.loginService.loggedIn.subscribe((loggedIn) => this.loggedIn = loggedIn);
   }
 
   filterEvents(val: string) {

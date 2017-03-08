@@ -1,27 +1,42 @@
-# AngularTicketmaster
+# Ticketmaster 2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+[![Supported platforms][badge-platforms]][Releases] [![Latest release][badge-release]][Releases] [![Open issues][badge-issues]][Issues]
 
-## Code scaffolding
+A multi platform Ticket tracker for [Facebook.com][Facebook]
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+[![Ticket Master][Preview]][Releases]
 
-## Build
+## How to develop
+Use the following commands to start developing, it will automaticly download latest electron version
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```bash
+npm install
+npm start
+```
 
-## Running unit tests
+It will start a local server and open it in a electron window with hot reloading.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Package a release
+Run the following command to build to all platforms.
+```bash
+npm run package:all
+```
 
-## Running end-to-end tests
+NOTE: To build for `darwin/mac` you need a mac computer. For `windows` you need either a Windows computer or `wine` installed
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+## Download
 
-## Further help
+[Here you can find the list of all recent releases.][Releases]
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+You can also try out the latest unreleased version by cloning this repository and building the application off the master branch.
+
+  [Facebook]: https://facebook.com "Facebook"
+  [Preview]: http://i.imgur.com/Z5dUMKQ.png "Preview image"
+  [Releases]: https://github.com/AnteWall/TicketMaster/releases "Ticket Master Releases"
+  [Issues]: https://github.com/AnteWall/TicketMaster/issues "Ticket Master Issues"
+  [Contributing]: https://github.com/AnteWall/TicketMaster/blob/master/CONTRIBUTING.md
+  [badge-platforms]: https://img.shields.io/badge/platform-win%20%7C%20osx%20%7C%20linux-green.svg?style=flat-square "Supported platforms"
+  [badge-release]: https://img.shields.io/github/release/AnteWall/TicketMaster.svg?style=flat-square "Latest release"
+  [badge-issues]: https://img.shields.io/github/issues/AnteWall/TicketMaster.svg?style=flat-square "Open issues"
+  

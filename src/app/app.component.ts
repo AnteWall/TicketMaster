@@ -9,10 +9,13 @@ import { LoginService } from './services';
 })
 export class AppComponent {
   @ViewChild('sidenav') sidenav: MdSidenav;
-
-  constructor(private loginService: LoginService) { }
-
-  loginFB() {
-    this.loginService.loginFacebook().then(() => this.sidenav.open());
+  private loggedIn: boolean = false;
+  constructor(private loginService: LoginService) {
+    this.loginService.loggedIn.subscribe((isLoggedIn) => {
+      this.loggedIn = isLoggedIn;
+      if (isLoggedIn) {
+        this.sidenav.open();
+      }
+    })
   }
 }

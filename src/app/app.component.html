@@ -7,8 +7,6 @@
   </md-sidenav>
 
   <div class="sidenav-content">
-    <button md-raised-button color="primary" (click)="loginFB()">
-      Logga in med Facebook
-    </button>
+    <signin *ngIf="!loggedIn"></signin>
   </div>
 </md-sidenav-container>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './../services';
+import { LoginService, SettingsService } from './../services';
 
 @Component({
   selector: 'settings',
@@ -9,10 +9,15 @@ import { LoginService } from './../services';
 export class SettingsComponent implements OnInit {
   private profile: Object;
   private autoComment: boolean = false;
+  private updateInterval: number = 3;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private settingsService: SettingsService) { }
 
   ngOnInit() {
     this.loginService.profile.subscribe((profile) => this.profile = profile);
+  }
+
+  setUpdateInterval(updatedValue) {
+    this.settingsService.setUpdateIntercal(updatedValue);
   }
 }

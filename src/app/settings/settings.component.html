@@ -1,7 +1,7 @@
 <img class="profile-img" *ngIf="profile" src="https://graph.facebook.com/v2.8/{{profile?.id}}/picture?type=large" />
 
 <label>Uppdateringsinterval <small>(sekunder)</small></label>
-<md-slider min="1" value="3" step="1" max="10" thumbLabel tickInterval="1"></md-slider>
+<md-slider min="1" [(ngModel)]="updateInterval" (ngModelChange)="setUpdateInterval($event)" step="1" max="10" thumbLabel tickInterval="1"></md-slider>
 <md-slide-toggle [(ngModel)]="autoComment" labelPosition="before">Autokommentera</md-slide-toggle>
 <md-input-container *ngIf="autoComment" class="example-full-width">
   <input mdInput placeholder="Meddelandetext">

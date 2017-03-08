@@ -10,13 +10,15 @@ import { SettingsComponent } from './settings/settings.component';
 import 'hammerjs';
 import { TopbarComponent } from './topbar/topbar.component';
 import { SigninComponent } from './signin/signin.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SettingsComponent,
     TopbarComponent,
-    SigninComponent
+    SigninComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

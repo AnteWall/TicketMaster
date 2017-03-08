@@ -7,6 +7,13 @@
   </md-sidenav>
 
   <div class="sidenav-content">
-    <signin *ngIf="!loggedIn"></signin>
+    <signin *ngIf="!loggedIn; else isLoggedIn"></signin>
+
+    <ng-template #isLoggedIn>
+      <div class="message-box">
+        <message *ngFor="let message of [1,2,3,4]"></message>
+      </div>
+    </ng-template>
+
   </div>
 </md-sidenav-container>

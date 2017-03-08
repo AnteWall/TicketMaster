@@ -1,0 +1,38 @@
+:host {
+    display: flex;
+    padding: 12px 0;
+    img {
+        flex: 0 0 50px;
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .button-info {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 6px 0 0;
+      img {
+        cursor: pointer;
+        height: 24px;
+        width: auto;
+      }
+    }
+    .message-info {
+        flex: 1;
+        margin-left: 12px;
+        display: inline-block;
+        vertical-align: middle;
+        h2 {
+            font-weight: bold;
+        }
+        p {
+            color: #C1C3C3;
+        }
+    }
+    .time-info {
+        color: #C1C3C3;
+        align-self: center;
+    }
+}

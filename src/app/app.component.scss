@@ -6,13 +6,21 @@
 }
 
 .sidenav-content {
+    padding: 20px;
     display: flex;
     height: 100%;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
 }
 
 .sidenav {
     background: $side-nav-bg;
     min-width: 200px;
+}
+
+.message-box {
+    width: 100%;
+    padding: 12px;
+    background: #FFF;
+    border: 1px solid #F1F2F3;
 }

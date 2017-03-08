@@ -27,6 +27,7 @@
     "@angular/router": "^4.0.0.rc.2",
     "core-js": "^2.4.1",
     "electron": "^1.6.1",
+    "hammerjs": "^2.0.8",
     "ng2-facebook-sdk": "^1.2.0",
     "oauth-electron-facebook": "^0.1.2",
     "rxjs": "^5.1.0",

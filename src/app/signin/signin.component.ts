@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginService } from './../services';
 
 @Component({
@@ -6,7 +6,7 @@ import { LoginService } from './../services';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent {
 
   constructor(private loginService: LoginService) { }
 

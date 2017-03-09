@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MdSidenav } from '@angular/material';
-import { LoginService } from './services';
+import { LoginService, ParserService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +10,16 @@ import { LoginService } from './services';
 export class AppComponent {
   @ViewChild('sidenav') sidenav: MdSidenav;
   private loggedIn: boolean = false;
-  constructor(private loginService: LoginService) {
+  private isSearching: boolean = false;
+
+  constructor(private loginService: LoginService, private parserService: ParserService) {
     this.loginService.loggedIn.subscribe((isLoggedIn) => {
       this.loggedIn = isLoggedIn;
       if (isLoggedIn) {
         this.sidenav.open();
       }
     })
+
+    this.parserService.isSearching.subscribe((isSearching) => this.isSearching = isSearching);
   }
 }

@@ -8,5 +8,7 @@
   <input mdInput placeholder="Meddelandetext">
 </md-input-container>
 
-<button disabled class="example-full-width" md-raised-button color="primary">Starta</button>
-<label><small>Välj ett evengemang innan du kan starta sökningen</small></label>
+<label *ngIf="currentEvent == null"><small>Välj ett evengemang innan du kan starta sökningen</small></label>
+<button (click)="startSearch()" disabled="{{isSearching || currentEvent == null}}" class="example-full-width" md-raised-button
+  color="primary">Starta</button>
+<button (click)="stopSearch()" disabled="{{!isSearching}}" class="example-full-width" md-raised-button color="warn">Stoppa</button>

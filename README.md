@@ -1,5 +1,7 @@
 # Ticketmaster 2
 
+## NEW DEVELOPMENT VERISON - Not yet completed 
+### [Here you can find the list of old releases.][Releases]
 
 [![Supported platforms][badge-platforms]][Releases] [![Latest release][badge-release]][Releases] [![Open issues][badge-issues]][Issues]
 

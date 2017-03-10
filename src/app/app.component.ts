@@ -11,6 +11,7 @@ export class AppComponent {
   @ViewChild('sidenav') sidenav: MdSidenav;
   private loggedIn: boolean = false;
   private isSearching: boolean = false;
+  private messages: Array<any> = [];
 
   constructor(private loginService: LoginService, private parserService: ParserService) {
     this.loginService.loggedIn.subscribe((isLoggedIn) => {
@@ -19,7 +20,7 @@ export class AppComponent {
         this.sidenav.open();
       }
     })
-
+    this.parserService.messages.subscribe((messages) => this.messages = messages);
     this.parserService.isSearching.subscribe((isSearching) => this.isSearching = isSearching);
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { FacebookApiService } from './';
+import { FacebookApiService, SettingsService } from './';
 
 @Injectable()
 export class ParserService {
@@ -17,10 +17,18 @@ export class ParserService {
   private _interval = null;
   private intervalTimeout = 3000;
 
-  constructor(private fbApi: FacebookApiService) { }
+  constructor(private fbApi: FacebookApiService, private settingsService: SettingsService) {
+    this.settingsService.updateInterval.subscribe((intervalTimeout) => {
+      this.intervalTimeout = intervalTimeout * 1000; // Convert to milliseconds
+      if (this._isSearching.value) {
+        this.resetSearch()
+      }
+    });
+  }
 
   startSearch() {
     this._isSearching.next(true);
+    this.getFeedData(); // Get a feed directly instead of waiting for first interval to trigger
     this._interval = setInterval(() => {
       this.getFeedData();
     }, this.intervalTimeout);

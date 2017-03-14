@@ -29,6 +29,7 @@ export class ParserService {
 
   resetSearch() {
     this.stopSearch();
+    this._messages.next([]);
     this.startSearch();
   }
 

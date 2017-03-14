@@ -17,6 +17,10 @@ export class ParserService {
   private _interval = null;
   private intervalTimeout = 3000;
 
+  private TRIGGER_WORDS = ["säljer", "säljes", "kränga", "kränger", "kvarn"];
+
+  private addedMessageIds = [];
+
   constructor(private fbApi: FacebookApiService, private settingsService: SettingsService) {
     this.settingsService.updateInterval.subscribe((intervalTimeout) => {
       this.intervalTimeout = intervalTimeout * 1000; // Convert to milliseconds
@@ -42,16 +46,39 @@ export class ParserService {
   resetSearch() {
     this.stopSearch();
     this._messages.next([]);
+    this.addedMessageIds = [];
     this.startSearch();
   }
 
   setEvent(event) {
+    this._messages.next([]);
+    this.addedMessageIds = [];
     this._event.next(event);
   }
 
   private getFeedData(): void {
     this.fbApi.get(`/${this._event.value.id}/feed`, ['message', 'picture', 'from', 'id']).subscribe((response) => {
-      this._messages.next(response.json().data);
+      for (let message of response.json().data) {
+        if (this.addedMessageIds.indexOf(message.id) === -1 && this.shouldTrigger(message)) {
+          this.addedMessageIds.push(message.id);
+          this._messages.next([...this._messages.value, message]);
+        }
+      }
     });
+  }
+
+  private shouldTrigger(message: any): boolean {
+    if (message.message) {
+      for (let triggerWord of this.TRIGGER_WORDS) {
+
+        var re = new RegExp(triggerWord, "i");
+        if (message.message.search(re) > -1) {
+          console.log(triggerWord);
+
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

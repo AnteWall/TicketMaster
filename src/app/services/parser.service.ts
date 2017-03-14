@@ -14,16 +14,20 @@ export class ParserService {
   private _messages: BehaviorSubject<Array<any>> = new BehaviorSubject<Array<any>>([]);
   public messages: Observable<any> = this._messages.asObservable();
 
+  private _interval = null;
+  private intervalTimeout = 3000;
+
   constructor(private fbApi: FacebookApiService) { }
 
   startSearch() {
     this._isSearching.next(true);
-    this.fbApi.get(`/${this._event.value.id}/feed`, ['message', 'picture', 'from', 'id']).subscribe((response) => {
-      this._messages.next(response.json().data)
-    })
+    this._interval = setInterval(() => {
+      this.getFeedData();
+    }, this.intervalTimeout);
   }
 
   stopSearch() {
+    clearInterval(this._interval);
     this._isSearching.next(false);
   }
 
@@ -37,4 +41,9 @@ export class ParserService {
     this._event.next(event);
   }
 
+  private getFeedData(): void {
+    this.fbApi.get(`/${this._event.value.id}/feed`, ['message', 'picture', 'from', 'id']).subscribe((response) => {
+      this._messages.next(response.json().data);
+    });
+  }
 }

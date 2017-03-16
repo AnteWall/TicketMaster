@@ -1,13 +1,10 @@
 # Ticketmaster 2
 
-## NEW DEVELOPMENT VERISON - Not yet completed 
-### [Here you can find the list of old releases.][Releases]
-
 [![Supported platforms][badge-platforms]][Releases] [![Latest release][badge-release]][Releases] [![Open issues][badge-issues]][Issues]
 
 A multi platform Ticket tracker for [Facebook.com][Facebook]
 
-[![Ticket Master][Preview]][Releases]
+![ScreenShot](https://raw.github.com/AnteWall/Ticketmaster/master/ticketmaster2.png)
 
 ## How to develop
 Use the following commands to start developing, it will automaticly download latest electron version
@@ -34,7 +31,6 @@ NOTE: To build for `darwin/mac` you need a mac computer. For `windows` you need 
 You can also try out the latest unreleased version by cloning this repository and building the application off the master branch.
 
   [Facebook]: https://facebook.com "Facebook"
-  [Preview]: http://i.imgur.com/Z5dUMKQ.png "Preview image"
   [Releases]: https://github.com/AnteWall/TicketMaster/releases "Ticket Master Releases"
   [Issues]: https://github.com/AnteWall/TicketMaster/issues "Ticket Master Issues"
   [Contributing]: https://github.com/AnteWall/TicketMaster/blob/master/CONTRIBUTING.md

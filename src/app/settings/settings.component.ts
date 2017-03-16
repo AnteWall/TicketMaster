@@ -1,3 +1,4 @@
+import { AUTOCOMMENT_MESSAGE_DEFAULT, AUTOCOMMENT_ON_DEFAULT, UPDATE_INTERVAL_DEFAULT } from '../../constants';
 import { Component, OnInit } from '@angular/core';
 import { LoginService, SettingsService, ParserService } from './../services';
 
@@ -8,8 +9,9 @@ import { LoginService, SettingsService, ParserService } from './../services';
 })
 export class SettingsComponent implements OnInit {
   private profile: Object;
-  private autoComment: boolean = false;
-  private updateInterval: number = 3;
+  private autoComment: boolean = AUTOCOMMENT_ON_DEFAULT;
+  private autoCommentMessage: string = AUTOCOMMENT_MESSAGE_DEFAULT;
+  private updateInterval: number = UPDATE_INTERVAL_DEFAULT;
   private isSearching: boolean = false;
   private currentEvent: any = null;
 
@@ -37,8 +39,15 @@ export class SettingsComponent implements OnInit {
     this.parserService.stopSearch();
   }
 
+  onAutoCommentChange(newValue) {
+    this.settingsService.shouldAutocomment(newValue);
+  }
+
+  onAutoCommentMessageChange(newValue) {
+    this.settingsService.setAutocommentMessage(newValue);
+  }
+
   setUpdateInterval(updatedValue) {
-    console.log(this.currentEvent);
     this.settingsService.setUpdateIntercal(updatedValue);
   }
 }

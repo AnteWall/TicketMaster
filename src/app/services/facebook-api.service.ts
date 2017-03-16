@@ -18,8 +18,15 @@ export class FacebookApiService {
     return this.http.get(`${API_URL}${url}?access_token=${this._token.value}${mappedFields}`, params);
   }
 
+  post(url: string, params: any): Observable<Response> {
+    return this.http.post(`${API_URL}${url}?access_token=${this._token.value}`, params);
+  }
+
+  delete(url: string, params: any = {}): Observable<Response> {
+    return this.http.delete(`${API_URL}${url}?access_token=${this._token.value}`, params);
+  }
+
   setToken(token) {
     this._token.next(token);
   }
-
 }

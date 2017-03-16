@@ -32,6 +32,7 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 body {
     background: #F5F6F8;
     font-family: 'PT Sans', sans-serif;
+    overflow: hidden;
 }
 
 .example-full-width .mat-input-placeholder {

@@ -1,3 +1,4 @@
+import { FacebookApiService } from '../services';
 import { Component, Input } from '@angular/core';
 declare var require: any
 const { shell } = (window as any).require('electron');
@@ -10,7 +11,15 @@ const { shell } = (window as any).require('electron');
 export class MessageComponent {
   @Input('message') message: any;
 
+  constructor(private fbApi: FacebookApiService) { }
+
   openExternal() {
     shell.openExternal(this.message.permalink_url)
+  }
+
+  deleteAutocomment() {
+    this.fbApi.delete(`/${this.message.myCommentId}`).subscribe((success) => {
+      this.message.myCommentId = null;
+    });
   }
 }

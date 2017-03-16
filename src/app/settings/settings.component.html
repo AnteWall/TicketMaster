@@ -3,9 +3,9 @@
 <label>Uppdateringsinterval <small>(sekunder)</small></label>
 <md-slider min="1" [(ngModel)]="updateInterval" (ngModelChange)="setUpdateInterval($event)" step="1" max="10" thumbLabel
   tickInterval="1"></md-slider>
-<md-slide-toggle [(ngModel)]="autoComment" labelPosition="before">Autokommentera</md-slide-toggle>
+<md-slide-toggle [(ngModel)]="autoComment" (ngModelChange)="onAutoCommentChange($event)" labelPosition="before">Autokommentera</md-slide-toggle>
 <md-input-container *ngIf="autoComment" class="example-full-width">
-  <input mdInput placeholder="Meddelandetext">
+  <input mdInput [(ngModel)]="autoCommentMessage" (ngModelChange)="onAutoCommentMessageChange($event)" placeholder="Meddelandetext">
 </md-input-container>
 
 <label *ngIf="currentEvent == null"><small>Välj ett evengemang innan du kan starta sökningen</small></label>

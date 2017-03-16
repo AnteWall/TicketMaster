@@ -23,6 +23,9 @@ export class ParserService {
 
   private alarm: any = new Audio('/assets/alarm.mp3');
 
+  private autoComment: boolean = false;
+  private autoCommentMessage: string = "";
+
   constructor(private fbApi: FacebookApiService, private settingsService: SettingsService) {
     this.settingsService.updateInterval.subscribe((intervalTimeout) => {
       this.intervalTimeout = intervalTimeout * 1000; // Convert to milliseconds
@@ -30,6 +33,9 @@ export class ParserService {
         this.resetSearch()
       }
     });
+
+    this.settingsService.autoComment.subscribe((shouldComment) => this.autoComment = shouldComment);
+    this.settingsService.autoCommentMessage.subscribe((message) => this.autoCommentMessage = message);
   }
 
   startSearch() {
@@ -64,11 +70,22 @@ export class ParserService {
         if (this.addedMessageIds.indexOf(message.id) === -1 && this.shouldTrigger(message)) {
           this.addedMessageIds.push(message.id);
           this._messages.next([message, ...this._messages.value]);
-          if(triggerEvents) {
+          if (triggerEvents) {
             this.alarm.play();
+            if (this.autoComment) {
+              this.postComment(message);
+            }
           }
         }
       }
+    });
+  }
+
+  postComment(post) {
+    this.fbApi.post(`/${post.id}/comments`, {
+      message: this.autoCommentMessage
+    }).subscribe((response) => {
+      post.myCommentId = response.json().id;
     });
   }
 

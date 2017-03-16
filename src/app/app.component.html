@@ -11,7 +11,7 @@
 
     <ng-template #isLoggedIn>
       <div class="message-box">
-        <message [message]="message" *ngFor="let message of messages"></message>
+        <message [message]="message" *ngFor="let message of messages | orderBy: ['-created_time']"></message>
       </div>
     </ng-template>
 

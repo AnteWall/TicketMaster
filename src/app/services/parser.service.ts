@@ -65,7 +65,7 @@ export class ParserService {
   }
 
   private getFeedData(triggerEvents: boolean = true): void {
-    this.fbApi.get(`/${this._event.value.id}/feed`, ['message', 'picture', 'from', 'id', 'permalink_url']).subscribe((response) => {
+    this.fbApi.get(`/${this._event.value.id}/feed`, ['message', 'picture', 'from', 'id', 'created_time', 'permalink_url']).subscribe((response) => {
       for (let message of response.json().data) {
         if (this.addedMessageIds.indexOf(message.id) === -1 && this.shouldTrigger(message)) {
           this.addedMessageIds.push(message.id);

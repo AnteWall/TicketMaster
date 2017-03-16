@@ -1,3 +1,4 @@
+import { OrderByPipe } from './pipes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +19,8 @@ import { MessageComponent } from './message/message.component';
     SettingsComponent,
     TopbarComponent,
     SigninComponent,
-    MessageComponent
+    MessageComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

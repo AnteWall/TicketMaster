@@ -20,9 +20,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "concurrently \"ng serve\" \"electron electron/entry.live.js\"",
-    "prepare:build": "npm run dev && cpx 'electron/*.{json,js}' dist",
-    "package:all": "npm run prepare:build && electron-packager dist Ticketmaster2 --all --out=release --overwrite",
-    "package:mac": "npm run prepare:build && electron-packager dist Ticketmaster2 --platform=darwin --out=release --overwrite"
+    "prepare:build": "npm run build && cpx 'electron/*.{json,js}' dist",
+    "package:all": "npm run prepare:build && electron-packager dist Ticketmaster2 --icon=icons/icon.ico --all --out=release --overwrite",
+    "package:mac": "npm run prepare:build && electron-packager dist Ticketmaster2 --icon=icons/icon.icns --platform=darwin --out=release --overwrite",
+    "package:linux": "npm run prepare:build && electron-packager dist Ticketmaster2 --icon=icons/icon.png --linux --out=release --overwrite"
   },
   "private": true,
   "dependencies": {

@@ -34,7 +34,7 @@ export class ParserService {
 
   startSearch() {
     this._isSearching.next(true);
-    this.getFeedData(); // Get a feed directly instead of waiting for first interval to trigger
+    this.getFeedData(false); // Get a feed directly instead of waiting for first interval to trigger
     this._interval = setInterval(() => {
       this.getFeedData();
     }, this.intervalTimeout);
@@ -58,13 +58,15 @@ export class ParserService {
     this._event.next(event);
   }
 
-  private getFeedData(): void {
+  private getFeedData(triggerEvents: boolean = true): void {
     this.fbApi.get(`/${this._event.value.id}/feed`, ['message', 'picture', 'from', 'id', 'permalink_url']).subscribe((response) => {
       for (let message of response.json().data) {
         if (this.addedMessageIds.indexOf(message.id) === -1 && this.shouldTrigger(message)) {
           this.addedMessageIds.push(message.id);
           this._messages.next([message, ...this._messages.value]);
-          this.alarm.play();
+          if(triggerEvents) {
+            this.alarm.play();
+          }
         }
       }
     });

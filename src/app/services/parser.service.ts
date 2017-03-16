@@ -21,6 +21,8 @@ export class ParserService {
 
   private addedMessageIds = [];
 
+  private alarm: any = new Audio('/assets/alarm.mp3');
+
   constructor(private fbApi: FacebookApiService, private settingsService: SettingsService) {
     this.settingsService.updateInterval.subscribe((intervalTimeout) => {
       this.intervalTimeout = intervalTimeout * 1000; // Convert to milliseconds
@@ -57,11 +59,12 @@ export class ParserService {
   }
 
   private getFeedData(): void {
-    this.fbApi.get(`/${this._event.value.id}/feed`, ['message', 'picture', 'from', 'id']).subscribe((response) => {
+    this.fbApi.get(`/${this._event.value.id}/feed`, ['message', 'picture', 'from', 'id', 'permalink_url']).subscribe((response) => {
       for (let message of response.json().data) {
         if (this.addedMessageIds.indexOf(message.id) === -1 && this.shouldTrigger(message)) {
           this.addedMessageIds.push(message.id);
-          this._messages.next([...this._messages.value, message]);
+          this._messages.next([message, ...this._messages.value]);
+          this.alarm.play();
         }
       }
     });

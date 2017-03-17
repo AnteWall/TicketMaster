@@ -1,6 +1,6 @@
 {
   "name": "ticketmaster2",
-  "version": "1.0.0",
+  "version": "1.0.0.rc1",
   "main": "entry.js",
   "description": "Ticketmaster2, the best ticketsytem for kårallen",
   "author": "Ante Wall"

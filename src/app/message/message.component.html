@@ -1,9 +1,9 @@
 <div class="button-info">
   <div (click)="openExternal()">
-    <img src="/assets/facebook-box.png" />
+    <img src="assets/facebook-box.png" />
   </div>
   <div *ngIf="message.myCommentId" (click)="deleteAutocomment()">
-    <img src="/assets/trash.png" />
+    <img src="assets/trash.png" />
   </div>
 </div>
 <img src="https://graph.facebook.com/v2.8/{{message.from.id}}/picture?type=square" />

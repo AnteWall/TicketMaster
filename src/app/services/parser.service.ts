@@ -21,7 +21,7 @@ export class ParserService {
 
   private addedMessageIds = [];
 
-  private alarm: any = new Audio('/assets/alarm.mp3');
+  private alarm: any = new Audio('assets/alarm.mp3');
 
   private autoComment: boolean = false;
   private autoCommentMessage: string = "";
